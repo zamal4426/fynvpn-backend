@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: fynvpn-backend
+    runtime: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node src/index.js
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: STRIPE_SECRET_KEY
+        value: sk_test_placeholder
+      - key: STRIPE_WEBHOOK_SECRET
+        value: whsec_placeholder
+      - key: CLIENT_URL
+        value: https://fynvpn.app
